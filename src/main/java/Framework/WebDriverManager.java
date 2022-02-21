@@ -87,7 +87,7 @@ class WebDriverManager {
 		for(Driver driver : driverList) {
 			driver.driver.quit();
 		}
-		Runtime.getRuntime().exec("taskkill /F /IM msedgedriver.exe");
+		Runtime.getRuntime().exec("taskkill /F /IM msedge.exe");
 	}
 	
 	public static void main(String[] args) {

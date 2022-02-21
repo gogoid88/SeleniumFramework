@@ -6,15 +6,19 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.junit.Assert;
-
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
+
 import junit.framework.TestCase;
 
 
-public class ReportsManager extends TestCase{
+public class ReportsManager{
 	static ExtentTest currTest;
 	static ExtentReports ReportInstance;
 	public static void getInstance() {
@@ -34,8 +38,9 @@ public class ReportsManager extends TestCase{
  
  public static void clearReports() {
 	 if(ReportInstance.getReportId() !=null) {
-	 ReportInstance.close();
-	 ReportInstance.flush();
+		 ReportInstance.flush();
+		 ReportInstance.close();
+	
 	 }
  }
  public static void endTest() {
@@ -48,15 +53,33 @@ public class ReportsManager extends TestCase{
 	 
  }
  
- public static void assertEquals(Object expected , Object actual) {
+ public static void assertEquals(String message ,Object expected, Object actual) {
 	 try {
-		 assertEquals(expected, actual);
-		 currTest.log(LogStatus.PASS, "comparison passed");
-	 }catch (AssertionError e) {
-		 currTest.log(LogStatus.FAIL, e.getMessage());
-		// TODO: handle exception
-	}
+	 Assert.assertEquals(expected, actual);
+	 currTest.log(LogStatus.PASS, message );
+	 }catch(AssertionError e) {
+		 currTest.log(LogStatus.FAIL, message);
+	 }
  }
+ 
+
+ 
+@Rule
+ public TestWatcher watchman= new TestWatcher() {
+	 	@Override
+         public void failed(Throwable e, Description description) {
+        	 currTest.log(LogStatus.FAIL, e.getMessage() + " in " + description.getMethodName());    
+         }
+	 	@Override
+         public void succeeded(Description description) {
+        	 currTest.log(LogStatus.PASS, description.getMethodName());
+         }
+ };
+ 
+
+
+
+ 
  
  
  

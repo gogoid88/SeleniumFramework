@@ -25,4 +25,4 @@ Feature: Search
     Given "http://www.google.com" is launched on browser
     When Enter search text string "webdriver"
 		Then click enter
-		And results will be shown
+		And results will be shown for "webdriver"

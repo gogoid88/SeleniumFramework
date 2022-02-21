@@ -33,6 +33,15 @@ public class GoogleStepDefinition {
 	public void enterSearch(String val) {
 		module.enterSearch(val);
 	}
+	
+	@Then("results will be shown for {string}")
+	public void results_will_be_shown(String val) {
+	    // Write code here that turns the phrase above into concrete actions
+	    module.checkResults(val);
+	}
+
+
+
 	@Then("click enter")
 	public void click() throws AWTException {
 		RobotActions.enterKey(KeyEvent.VK_ENTER);

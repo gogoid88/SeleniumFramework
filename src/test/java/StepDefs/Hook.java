@@ -10,7 +10,9 @@ public class Hook {
 	
 	@Before
 	public void beforeScenario(Scenario scenario) {
+		
 		ReportsManager.startNewTest(scenario.getName());
+		
 	}
 	@After
 	public void endScenario() {

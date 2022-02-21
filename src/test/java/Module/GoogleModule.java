@@ -1,5 +1,5 @@
 package Module;
-
+//////////////////////////////////////
 import Framework.ApplicationManager;
 import Framework.BasePage;
 import PageClass.GooglePage;
@@ -20,4 +20,8 @@ public class GoogleModule {
 		// TODO Auto-generated method stub
 		page.getURL(url);
 	}
+	
+	public void checkResults(String val) {
+		page.checkResults(val);
+	} 
 }
