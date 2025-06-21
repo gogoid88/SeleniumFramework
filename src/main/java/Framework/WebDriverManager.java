@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -88,6 +89,12 @@ class WebDriverManager {
 			driver.driver.quit();
 		}
 		Runtime.getRuntime().exec("taskkill /F /IM msedge.exe");
+	}
+	
+	public static void switchToNewTab(String url) {
+		curr.switchTo().newWindow(WindowType.TAB);
+		curr.navigate().to(url);
+		
 	}
 	
 	public static void main(String[] args) {
